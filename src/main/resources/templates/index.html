@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+</xmlns:sec="www.thmeleaf.org/extra/spring-security">
     <head th:fragment="headstuff">
         <meta charset="utf-8" />
         <link rel="icon" type="image/png" href="/img/favicon.ico">
@@ -48,22 +49,22 @@
                                 Login
                             </a>
                         </li>
-                        <li>
-                            <a href="/pageone">
+                        <li sec:authorize="hasAuthority('STUDENT')">
+                            <a href="/deposite">
                                 <i class="fa fa-user"></i>
-                                Page One
+                                deposite
                             </a>
                         </li>
-                        <li>
-                            <a href="/pagetwo">
+                        <li sec:authorize="hasAuthority('STUDENT')">
+                            <a href="/withdrawal">
                                 <i class="fa fa-user"></i>
-                                Page Two
+                                withdrawal
                             </a>
                         </li>
-                        <li>
-                            <a href="/pagethree">
+                        <li sec:authorize="hasAuthority('TEACHER')">
+                            <a href="/transactionhistory">
                                 <i class="fa fa-user"></i>
-                                Page Three
+                                transaction history
                             </a>
                         </li>
                     </ul>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="index::headstuff">
+    <meta charset="UTF-8"/>
+    <title>Transactionhistory</title>
+</head>
+    <body>
+    <div th:replace="fragments/mainpage::navclass">This page has a navbar</div>
+
+    <div th:include="fragments/mainpage :: everydiv">This text will include the containing div tag. It works counter-intuitively, but it does work.</div>
+
+    <span class="text-danger">This should show as red.</span>
+
+    <form action="#" th:action="@{/transactionhistory}" th:object="${bank}" method="post">
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="container show_bg">
+        <div class="row inputst form2_bg">
+            <label class="col-md-2 labelst">Id :</label>
+            <span class="col-md-10 t_span" th:text="${bank.id}"></span>
+        </div>
+        <div class="row inputst form2_bg">
+        <label class="col-md-2 labelst">:accountnumber</label>
+        <span class="col-md-10 t_span" th:text="${bank.accountnumber}"></span>
+    </div>
+        <div class="row inputst form2_bg">
+            <label class="col-md-2 labelst">depositeamount:</label>
+            <span class="col-md-10 t_span" th:text="${bank.depositeamount}"></span>
+        </div>
+        <div class="row inputst form2_bg">
+        <label class="col-md-2 labelst">Withdrawalamount :</label>
+        <span class="col-md-10 t_span" th:text="${bank.withdrawalamount}"></span>
+    </div>
+
+        <div class="row inputst form2_bg">
+            <label class="col-md-2 labelst">Reason :</label>
+            <span class="col-md-10 t_span" th:text="${bank.reason}"></span>
+        </div>
+
+
+    </div>
+
+    <!-- Latest compiled and minified JavaScript form jquery and the bootstrap-->
+    <script
+            src="http://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    </form>
+    </body>
+</html>
+
+
+
+
+
+    </body>
+</html>

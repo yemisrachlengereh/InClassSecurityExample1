@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="index::headstuff">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"></title>
+</head>
+    <body>
+    <div th:replace="fragments/mainpage::navclass">This page has a navbar</div>
+
+    <div th:replace="fragments/mainpage :: everydiv">This will display with every div's information</div>
+
+    <form action="#" th:action="@{/transactionhistory}" th:object="${bank}" method="post">
+        <input type="hidden" th:field="*{id}" />
+
+        <p class="col-md-2"></p><label class="col-md-4">Id number(autoincrement):</label> <input type="number" th:field="*{id}" />
+        <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}"> </span> <br /><br />
+
+        <p class="col-md-2"></p><label class="col-md-4">Account number:</label> <input type="number" th:field="*{accountnumber}" />
+        <span th:if="${#fields.hasErrors('accountnumber')}" th:errors="*{accountnumber}"> </span> <br /> <br />
+
+        <p class="col-md-2"></p><label class="col-md-4">How much money you want to deposite:</label> <input type="number" th:field="*{depositeamount}" />
+        <span th:if="${#fields.hasErrors('depositeamount')}" th:errors="*{depositeamount}"> </span> <br /><br />
+
+
+        <p class="col-md-6"></p><input type="submit" value="Submit" />
+
+
+
+    </form>
+    <div class="vl"></div>
+    </div>
+    <script
+            src="http://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+
+
+
+    </body>
+</html>

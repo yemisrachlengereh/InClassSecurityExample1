@@ -36,6 +36,55 @@ public class UserData {
 
     private String username;
 
+    private String reason;
+
+    private String withdrawalamount;
+
+    private String depositeamount;
+
+    public String getTransactionhistory() {
+        return transactionhistory;
+    }
+
+    public void setTransactionhistory(String transactionhistory) {
+        this.transactionhistory = transactionhistory;
+    }
+
+    private String accountnumber;
+
+    private String transactionhistory;
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getWithdrawalamount() {
+        return withdrawalamount;
+    }
+
+    public void setWithdrawalamount(String withdrawalamount) {
+        this.withdrawalamount = withdrawalamount;
+    }
+
+    public String getDepositeamount() {
+        return depositeamount;
+    }
+
+    public void setDepositeamount(String depositeamount) {
+        this.depositeamount = depositeamount;
+    }
+
+    public String getAccountnumber() {
+        return accountnumber;
+    }
+
+    public void setAccountnumber(String accountnumber) {
+        this.accountnumber = accountnumber;
+    }
 
     //The relationship many user's can have many roles each person can have one or more or zero
     @ManyToMany(fetch = FetchType.EAGER)

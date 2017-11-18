@@ -35,23 +35,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
+
         http
                 .authorizeRequests()
                 //I have a custom login form, but why can't I see my CSS?
                 .antMatchers("/css/**","/js/**","/img/**","/h2-console/**","/register").permitAll()
                 .antMatchers("/").access("hasAuthority('STUDENT') or hasAuthority('TEACHER')")
                 .antMatchers("/admin","/pagethree").access("hasAuthority('TEACHER')")
+                .antMatchers("/pageone","/pagetwo").access("hasAuthority('STUDENT')")
                 //Want to see all different levels must alow secuirty to access these folders and make these accessible to anyone ion the browser
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
                 .and()
-                .formLogin().defaultSuccessUrl("/pagethree",true)//Ading chaining for allhttp sercueity
-                //Allows sucessful logout
+                .formLogin().defaultSuccessUrl("/",true)//Ading chaining for allhttp sercueity
+
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login").permitAll().permitAll();
+
+        http
+                .csrf().disable();
+        http
+                .headers().frameOptions().disable();
 
 
     }

@@ -1,9 +1,9 @@
 package me.afua.thymeleafsecdemo.controllers;
 
+import me.afua.thymeleafsecdemo.entities.Bank;
 import me.afua.thymeleafsecdemo.entities.UserData;
 import me.afua.thymeleafsecdemo.entities.UserService;
-import me.afua.thymeleafsecdemo.repositories.RoleRepository;
-import org.apache.catalina.User;
+import me.afua.thymeleafsecdemo.repositories.BankRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +17,9 @@ import java.security.Principal;
 public class MainController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BankRepository bankRepository;
 
     @RequestMapping("/")
     public String showMainPage(Principal p) {
@@ -35,26 +38,104 @@ public class MainController {
     {
         model.addAttribute("title","First Page");
         model.addAttribute("pagenumber","1");
-        return "pageone";
+        return "deposite";
     }
+
+    //this is for user data object
 
     @GetMapping("/register")
     public String showRegistrationPage(Model model){
-        model.addAttribute("user", new UserData ());
+        model.addAttribute("userdata", new UserData ());
         model.addAttribute("pagenumber","4");
         return "registration";
     }
 
     @PostMapping("/register")
     public String processRegistrationPage(
-            @Valid @ModelAttribute("user") UserData user,
+            @Valid @ModelAttribute("userdata") UserData user,
             BindingResult result,
             Model model){
+
+        model.addAttribute("userdata", user);
+
+        if (result.hasErrors()) {
+            return "registration";
+        } else {
+            userService.saveUserData(user);
+            model.addAttribute("message", "User Account Successfully Created");
+        }
+        return "index";
+    }
+
+    //this is for bank object
+
+    @GetMapping("/deposite")
+    public String showDepositePage(Model model){
+        model.addAttribute("bank", new Bank());
+        model.addAttribute("pagenumber","Bank");
+        return "deposite";
+    }
+
+    @PostMapping("/deposite")
+    public String showDepositePage(
+            @Valid @ModelAttribute("bank") Bank bank,
+            BindingResult result, Model model){
+
+        model.addAttribute("bank", bank);
+
+        if (result.hasErrors()) {
+            return "deposite";
+        } else {
+            bankRepository.save(bank);
+            model.addAttribute("message", "User Account Successfully Created");
+        }
+        return "transactionhistory";
+    }
+
+    @GetMapping("/transactionhistory")
+    public String showTransactionhistoryPage(Model model){
+        model.addAttribute("bank", new Bank());
+        model.addAttribute("pagenumber","Bank");
+        return "transactionhistory";
+    }
+//
+    @PostMapping("/transactionhistory")
+    public String showTransactionhistoryPage(
+            @Valid @ModelAttribute("bank") Bank bank,
+            BindingResult result, Model model){
+
+        model.addAttribute("bank", bank);
+
+        if (result.hasErrors()) {
+            return "index";
+        } else {
+            bankRepository.save(bank);
+            model.addAttribute("message", "User Account Successfully Created");
+        }
+        return "transactionhistory";
+    }
+//
+//
+
+
+
+
+    @GetMapping("/withdrawal")
+    public String showWithdrawalPage(Model model){
+        model.addAttribute("bank", new Bank());
+        model.addAttribute("pagenumber","Bank");
+        return "withdrawal";
+    }
+
+    @PostMapping("/withdrawal")
+    public String showWithdrawalPage(
+            @Valid @ModelAttribute("user") UserData user,
+            BindingResult result, Model model){
 
         model.addAttribute("user", user);
 
         if (result.hasErrors()) {
-            return "registration";
+            return "index";
         } else {
             userService.saveUserData(user);
             model.addAttribute("message", "User Account Successfully Created");
@@ -69,7 +150,7 @@ public class MainController {
     {
         model.addAttribute("title","Second Page");
         model.addAttribute("pagenumber","2");
-        return "pagetwo";
+        return "withdrawl";
     }
 
     @RequestMapping("/pagethree")
