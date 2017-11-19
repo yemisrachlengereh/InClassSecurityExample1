@@ -50,9 +50,9 @@
                             </a>
                         </li>
                         <li sec:authorize="hasAuthority('STUDENT')">
-                            <a href="/deposite">
+                            <a href="/deposit">
                                 <i class="fa fa-user"></i>
-                                deposite
+                                deposit
                             </a>
                         </li>
                         <li sec:authorize="hasAuthority('STUDENT')">
@@ -61,8 +61,8 @@
                                 withdrawal
                             </a>
                         </li>
-                        <li sec:authorize="hasAuthority('TEACHER')">
-                            <a href="/transactionhistory">
+                        <li>
+                            <a href="/history">
                                 <i class="fa fa-user"></i>
                                 transaction history
                             </a>

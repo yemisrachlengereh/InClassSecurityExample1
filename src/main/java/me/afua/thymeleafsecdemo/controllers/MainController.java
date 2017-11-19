@@ -46,7 +46,6 @@ public class MainController {
     @GetMapping("/register")
     public String showRegistrationPage(Model model){
         model.addAttribute("userdata", new UserData ());
-        model.addAttribute("pagenumber","4");
         return "registration";
     }
 
@@ -69,99 +68,46 @@ public class MainController {
 
     //this is for bank object
 
-    @GetMapping("/deposite")
+    @GetMapping("/deposit")
     public String showDepositePage(Model model){
         model.addAttribute("bank", new Bank());
-        model.addAttribute("pagenumber","Bank");
-        return "deposite";
+//        model.addAttribute("pagenumber","Bank");
+        return "deposit";
     }
 
-    @PostMapping("/deposite")
-    public String showDepositePage(
-            @Valid @ModelAttribute("bank") Bank bank,
-            BindingResult result, Model model){
-
-        model.addAttribute("bank", bank);
-
-        if (result.hasErrors()) {
-            return "deposite";
-        } else {
+    @PostMapping("/deposit")
+    public String depositeForm(@Valid Bank bank,BindingResult result){
+        if(result.hasErrors()) {
+            return "deposit";
+        }
             bankRepository.save(bank);
-            model.addAttribute("message", "User Account Successfully Created");
-        }
-        return "transactionhistory";
+
+        return "redirect:/history";
     }
 
-    @GetMapping("/transactionhistory")
-    public String showTransactionhistoryPage(Model model){
-        model.addAttribute("bank", new Bank());
-        model.addAttribute("pagenumber","Bank");
-        return "transactionhistory";
+    @RequestMapping("/history")
+    public String listRecords(Model model){
+                model.addAttribute("records" , bankRepository.findAll());
+                return "transactionhistory";
+
     }
+
+//    @GetMapping("/withdrawal")
+//    public String showWithdrawalPage(Model model){
+//        model.addAttribute("bank", new Bank());
 //
-    @PostMapping("/transactionhistory")
-    public String showTransactionhistoryPage(
-            @Valid @ModelAttribute("bank") Bank bank,
-            BindingResult result, Model model){
-
-        model.addAttribute("bank", bank);
-
-        if (result.hasErrors()) {
-            return "index";
-        } else {
-            bankRepository.save(bank);
-            model.addAttribute("message", "User Account Successfully Created");
-        }
-        return "transactionhistory";
-    }
+//        return "withdrawal";
+//    }
 //
+//    @PostMapping("/deposit")
+//    public String withdrawalForm(@Valid Bank bank,BindingResult result){
+//        if(result.hasErrors()) {
+//            return "withdrawal";
+//        }
+//        bankRepository.save(bank);
 //
-
-
-
-
-    @GetMapping("/withdrawal")
-    public String showWithdrawalPage(Model model){
-        model.addAttribute("bank", new Bank());
-        model.addAttribute("pagenumber","Bank");
-        return "withdrawal";
-    }
-
-    @PostMapping("/withdrawal")
-    public String showWithdrawalPage(
-            @Valid @ModelAttribute("user") UserData user,
-            BindingResult result, Model model){
-
-        model.addAttribute("user", user);
-
-        if (result.hasErrors()) {
-            return "index";
-        } else {
-            userService.saveUserData(user);
-            model.addAttribute("message", "User Account Successfully Created");
-        }
-        return "index";
-    }
-
-
-
-    @RequestMapping("/pagetwo")
-    public String showPageTwo(Model model)
-    {
-        model.addAttribute("title","Second Page");
-        model.addAttribute("pagenumber","2");
-        return "withdrawl";
-    }
-
-    @RequestMapping("/pagethree")
-    public String showPageThree(Model model)
-    {
-        model.addAttribute("title","Third Page");
-        model.addAttribute("pagenumber","3");
-        return "pagethree";
-    }
-
-
+//        return "redirect:/history";
+//    }
 
 
 }

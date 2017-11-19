@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 public class Bank {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
     private long id;
 
 
@@ -23,21 +24,30 @@ public class Bank {
     }
 
     @NotNull
+    private double withdrawalamount;
 
-   private String withdrawalamount;
+    public double getWithdrawalamount() {
+        return withdrawalamount;
+    }
+
+    public void setWithdrawalamount(double withdrawalamount) {
+        this.withdrawalamount = withdrawalamount;
+    }
+
     @NotNull
-    private String depositeamount;
+    private double depositeamount;
+
+    public double getDepositeamount() {
+        return depositeamount;
+    }
+
+    public void setDepositeamount(double depositeamount) {
+        this.depositeamount = depositeamount;
+    }
 
     @NotNull
     private long accountnumber;
 
-    public String getWithdrawalamount() {
-        return withdrawalamount;
-    }
-
-    public void setWithdrawalamount(String withdrawalamount) {
-        this.withdrawalamount = withdrawalamount;
-    }
 
     public long getId() {
         return id;
@@ -47,13 +57,6 @@ public class Bank {
         this.id = id;
     }
 
-    public String getDepositeamount() {
-        return depositeamount;
-    }
-
-    public void setDepositeamount(String depositeamount) {
-        this.depositeamount = depositeamount;
-    }
 
     public long getAccountnumber() {
         return accountnumber;

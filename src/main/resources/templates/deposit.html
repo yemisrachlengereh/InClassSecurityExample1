@@ -5,11 +5,9 @@
     <title th:text="${title}"></title>
 </head>
     <body>
-    <div th:replace="fragments/mainpage::navclass">This page has a navbar</div>
+    <h1 class="well col-md-12" style="text-align: center;">Deposite your money your money</h1>
 
-    <div th:replace="fragments/mainpage :: everydiv">This will display with every div's information</div>
-
-    <form action="#" th:action="@{/transactionhistory}" th:object="${bank}" method="post">
+    <form action="#" th:action="@{/}" th:object="${bank}" method="post">
         <input type="hidden" th:field="*{id}" />
 
         <p class="col-md-2"></p><label class="col-md-4">Id number(autoincrement):</label> <input type="number" th:field="*{id}" />
@@ -27,8 +25,8 @@
 
 
     </form>
-    <div class="vl"></div>
-    </div>
+
+    </body>
     <script
             src="http://code.jquery.com/jquery-3.2.1.js"
             integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="

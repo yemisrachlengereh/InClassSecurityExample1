@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org.thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org.thymeleaf-extras-springsecurity4"
+      xmlns:https="http://www.w3.org/1999/xhtml">
 <head th:replace="index::headstuff">
     <meta charset="UTF-8"/>
     <title>Page Two</title>
@@ -12,20 +13,14 @@
 
 
         <div class="container">
-
-
-            <div th:replace="fragments/mainpage::navclass">This page has a navbar</div>
-            <div class="container">
-                <h4 th:inline="text"><span class="text-success" sec:authentication="name"></span>,</h4>
-                <div th:replace="fragments/mainpage :: everydiv">This text will be replaced where a th:replace is used. </div>
-            </div>
-            <div th:replace="fragments/mainpage :: footer" style="text-align:center;"></div>
-
-        </div>
-        <h1> Withdral your money</h1>
-        <br />
-        <div class="container">
-
+   <div class="withdrawlpage">
+       <h1 class="well col-md-12" style="text-align: center;">Withdrawal your money</h1>
+          <!--</div>-->
+<!---->
+                <!--<img class="Foodpictures"-->
+                     <!--src="https://d1dd4ethwnlwo2.cloudfront.net/wp-content/uploads/2017/06/Maryland-Crab-Cakes-Horizontal-4.jpg"-->
+                     <!--align="left" alt="crapcake"/>-->
+            <!--</div>-->
 
             <form action="#" th:action="@{/process}" th:object="${bank}" method="post">
                 <input type="hidden" th:field="*{id}" />
@@ -54,7 +49,7 @@
                 src="http://code.jquery.com/jquery-3.2.1.js"
                 integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
                 crossorigin="anonymous"></script>
-
+        </div>
 
     </body>
 </html>
